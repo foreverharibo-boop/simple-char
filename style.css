@@ -120,7 +120,7 @@
 
 /* ---- The grid container ---------------------------------- */
 #rm_print_characters_block.sc-enabled {
-    display: grid;
+    display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     grid-auto-rows: 1fr;
     gap: var(--sc-gap);
