@@ -48,6 +48,25 @@ function applyTheme() {
         block.style.removeProperty('--sc-card-bg');
         block.style.removeProperty('--sc-card-bg-hover');
     }
+    sizeAvatars();
+}
+
+/**
+ * Set each avatar's height in px from its rendered width.
+ * CSS aspect-ratio / padding-% don't grow the grid row when the
+ * avatar width is a percentage (treated as 0 during intrinsic row
+ * sizing), so the card clips the photo. An explicit px height fixes it.
+ */
+function sizeAvatars() {
+    const block = document.getElementById(BLOCK_ID);
+    if (!block || !block.classList.contains('sc-enabled')) return;
+    const ratio = getSettings().theme === 'magazine' ? 4 / 3 : 1; // h/w
+    block.querySelectorAll('.entity_block .avatar').forEach((av) => {
+        const w = av.offsetWidth;
+        if (w > 0) {
+            av.style.setProperty('height', Math.round(w * ratio) + 'px', 'important');
+        }
+    });
 }
 
 /** Toggle the reskin on/off. */
@@ -193,6 +212,13 @@ export async function init() {
     // Re-apply when the character list panel is opened.
     $(document).on('click', '#rightNavDrawerIcon, #rm_button_characters', () => {
         setTimeout(applyEnabledState, 60);
+    });
+
+    // Avatar heights are pixel-based, so recompute on resize.
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(sizeAvatars, 120);
     });
 }
 
