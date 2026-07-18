@@ -1,0 +1,500 @@
+/* ============================================================
+   Simple Character — a card-grid reskin of the native character list.
+   Only applies when the extension adds .sc-enabled to the block.
+   Theme presets are toggled with .sc-theme-* classes; the accent
+   color can be overridden by an inline --sc-accent on the block.
+   ============================================================ */
+
+/* ---- Default tokens (Soft theme) ------------------------- */
+#rm_print_characters_block.sc-enabled {
+    --sc-radius: 16px;
+    --sc-avatar-corner: 16px;
+    --sc-gap: 10px;
+    --sc-accent: var(--SmartThemeQuoteColor, #7b68ee);
+    --sc-card-bg: color-mix(in srgb, var(--SmartThemeBodyColor) 6%, transparent);
+    --sc-card-bg-hover: color-mix(in srgb, var(--SmartThemeBodyColor) 12%, transparent);
+    --sc-card-bg-active: color-mix(in srgb, var(--sc-accent) 14%, transparent);
+    --sc-border: transparent;
+    --sc-border-hover: color-mix(in srgb, var(--SmartThemeBodyColor) 15%, transparent);
+    --sc-border-width: 1.5px;
+    --sc-glow: 0 0 16px color-mix(in srgb, var(--sc-accent) 30%, transparent),
+        inset 0 0 20px color-mix(in srgb, var(--sc-accent) 10%, transparent);
+    --sc-name-weight: 600;
+    --sc-text: var(--SmartThemeBodyColor);
+}
+
+/* ---- Circle preset (round avatars, soft card) ------------ */
+#rm_print_characters_block.sc-enabled.sc-theme-circle {
+    --sc-radius: 18px;
+    --sc-avatar-corner: 50%;
+    --sc-card-bg: color-mix(in srgb, var(--SmartThemeBodyColor) 5%, transparent);
+    --sc-card-bg-hover: color-mix(in srgb, var(--SmartThemeBodyColor) 10%, transparent);
+    --sc-card-bg-active: color-mix(in srgb, var(--sc-accent) 15%, transparent);
+}
+
+/* ---- Polaroid preset ------------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid {
+    --sc-radius: 4px;
+    --sc-avatar-corner: 2px;
+    --sc-card-bg: #faf8f5;
+    --sc-card-bg-hover: #ffffff;
+    --sc-card-bg-active: #fff6ea;
+    --sc-border: rgba(0, 0, 0, 0.08);
+    --sc-border-hover: color-mix(in srgb, var(--sc-accent) 40%, transparent);
+    --sc-glow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    --sc-text: #3a3230;
+    --sc-name-weight: 700;
+}
+
+/* ---- Magazine preset (photo bg + text overlay) ----------- */
+#rm_print_characters_block.sc-enabled.sc-theme-magazine {
+    --sc-radius: 14px;
+    --sc-card-bg: #000;
+    --sc-card-bg-hover: #000;
+    --sc-card-bg-active: #000;
+    --sc-border: transparent;
+    --sc-text: #ffffff;
+    --sc-name-weight: 700;
+}
+
+/* ---- Sticker preset (die-cut circle) --------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-sticker {
+    --sc-radius: 16px;
+    --sc-avatar-corner: 50%;
+    --sc-card-bg: transparent;
+    --sc-card-bg-hover: transparent;
+    --sc-card-bg-active: transparent;
+    --sc-border: transparent;
+    --sc-border-hover: transparent;
+    --sc-glow: none;
+}
+
+/* ---- Trading Card preset --------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-tcg {
+    --sc-radius: 12px;
+    --sc-avatar-corner: 8px;
+    --sc-card-bg: linear-gradient(150deg,
+        color-mix(in srgb, var(--sc-accent) 45%, transparent),
+        color-mix(in srgb, var(--sc-accent) 12%, transparent));
+    --sc-card-bg-hover: linear-gradient(150deg,
+        color-mix(in srgb, var(--sc-accent) 55%, transparent),
+        color-mix(in srgb, var(--sc-accent) 18%, transparent));
+    --sc-card-bg-active: linear-gradient(150deg,
+        color-mix(in srgb, var(--sc-accent) 60%, transparent),
+        color-mix(in srgb, var(--sc-accent) 22%, transparent));
+    --sc-border: rgba(255, 255, 255, 0.3);
+    --sc-border-hover: color-mix(in srgb, var(--sc-accent) 60%, #fff);
+    --sc-border-width: 2px;
+    --sc-glow: 0 0 16px color-mix(in srgb, var(--sc-accent) 60%, transparent);
+    --sc-text: #ffffff;
+    --sc-name-weight: 700;
+}
+
+/* ---- Glass preset ---------------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-glass {
+    --sc-radius: 18px;
+    --sc-avatar-corner: 16px;
+    --sc-card-bg: rgba(255, 255, 255, 0.1);
+    --sc-card-bg-hover: rgba(255, 255, 255, 0.16);
+    --sc-card-bg-active: rgba(255, 255, 255, 0.22);
+    --sc-border: rgba(255, 255, 255, 0.25);
+    --sc-border-hover: rgba(255, 255, 255, 0.4);
+    --sc-glow: 0 0 16px color-mix(in srgb, var(--sc-accent) 45%, transparent);
+    --sc-name-weight: 600;
+}
+
+/* ---- Paper preset ---------------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-paper {
+    --sc-radius: 22px;
+    --sc-avatar-corner: 20px;
+    --sc-card-bg: #f7f1e8;
+    --sc-card-bg-hover: #fffaf2;
+    --sc-card-bg-active: color-mix(in srgb, var(--sc-accent) 16%, #f7f1e8);
+    --sc-border: rgba(0, 0, 0, 0.06);
+    --sc-border-hover: color-mix(in srgb, var(--sc-accent) 40%, transparent);
+    --sc-border-width: 1.5px;
+    --sc-glow: 0 4px 14px color-mix(in srgb, var(--sc-accent) 30%, transparent);
+    --sc-name-weight: 600;
+    --sc-text: #4a4038;
+}
+
+/* ---- The grid container ---------------------------------- */
+#rm_print_characters_block.sc-enabled {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: var(--sc-gap);
+    padding: 4px 2px;
+    width: 100%;
+    box-sizing: border-box;
+    align-content: start;
+    justify-content: stretch;
+    justify-items: stretch;
+}
+
+/* ---- Each persona card ----------------------------------- */
+/* width/max-width use !important to defeat ST's native grid-view
+   toggle (#rm_print_characters_block.gridView .entity_block sets
+   max-width:100px at equal specificity), so our grid fills whether
+   or not the user has that toggle on. */
+#rm_print_characters_block.sc-enabled .entity_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    gap: 8px;
+    padding: 14px 6px 12px;
+    margin: 0;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100%;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    border-radius: var(--sc-radius);
+    background: var(--sc-card-bg);
+    border: var(--sc-border-width) solid var(--sc-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.18s ease, background 0.18s ease,
+        border-color 0.18s ease, box-shadow 0.18s ease;
+    cursor: pointer;
+}
+
+#rm_print_characters_block.sc-enabled .entity_block:hover {
+    background: var(--sc-card-bg-hover);
+    border-color: var(--sc-border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.32);
+}
+
+/* Selected / active persona */
+#rm_print_characters_block.sc-enabled .entity_block.selected {
+    background: var(--sc-card-bg-active);
+    border: var(--sc-border-width) solid var(--sc-accent);
+    box-shadow: var(--sc-glow);
+}
+
+/* Small active dot, top-right */
+#rm_print_characters_block.sc-enabled .entity_block.selected::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--sc-accent);
+    box-shadow: 0 0 6px var(--sc-accent);
+}
+#rm_print_characters_block.sc-enabled .entity_block {
+    position: relative;
+}
+
+/* ---- The avatar image (large, rounded-square) ------------ */
+/* ST forces size AND `border-radius !important` via big-avatars /
+   square-avatars body classes, so we override both with a higher-
+   specificity !important. Size scales with the card but caps out,
+   so 4 columns still look generous. */
+#rm_print_characters_block.sc-enabled .entity_block .avatar {
+    width: min(97%, 320px) !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--sc-avatar-corner) !important;
+    overflow: hidden;
+    align-self: center;
+    margin: 0 auto;
+    outline: none;
+    flex: unset;
+}
+
+#rm_print_characters_block.sc-enabled .entity_block .avatar img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    border-radius: var(--sc-avatar-corner) !important;
+}
+
+
+/* ---- Name + description (memo) --------------------------- */
+#rm_print_characters_block.sc-enabled .character_select_container {
+    width: 100%;
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#rm_print_characters_block.sc-enabled .character_name_block {
+    width: 100%;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column;
+    gap: 0;
+    text-align: center !important;
+}
+
+#rm_print_characters_block.sc-enabled .ch_name {
+    font-weight: var(--sc-name-weight, 600);
+    color: var(--sc-text);
+    font-size: 14px;
+    width: 100%;
+    text-align: center !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Persona description (long prompt text) — hide it. */
+#rm_print_characters_block.sc-enabled .ch_description {
+    display: none !important;
+}
+
+/* Persona TITLE (the short "display only" memo) — show it,
+   centered, truncated to one line so cards stay uniform height. */
+#rm_print_characters_block.sc-enabled .ch_additional_info {
+    display: block !important;
+    font-size: 11px;
+    opacity: 0.65;
+    width: 100%;
+    text-align: center !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.4em;
+    margin-top: 3px;
+}
+
+/* Lock badges: keep but shrink and float them */
+#rm_print_characters_block.sc-enabled .avatar_container_states {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    gap: 3px;
+}
+
+/* ============================================================
+   STRUCTURAL THEME OVERRIDES
+   The DOM is fixed, so each theme reshapes the same elements.
+   ============================================================ */
+
+/* ---- Tall themes use 3 columns and content-driven height -- */
+#rm_print_characters_block.sc-enabled.sc-theme-magazine,
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid,
+#rm_print_characters_block.sc-enabled.sc-theme-tcg {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: auto;
+}
+
+/* ---- CIRCLE: ring around the avatar when selected --------- */
+#rm_print_characters_block.sc-enabled.sc-theme-circle .entity_block.selected .avatar {
+    box-shadow: 0 0 0 3px var(--sc-accent),
+        0 0 14px color-mix(in srgb, var(--sc-accent) 55%, transparent);
+}
+
+/* ---- STICKER: die-cut circle, no card, scale on select ---- */
+#rm_print_characters_block.sc-enabled.sc-theme-sticker .entity_block {
+    padding: 8px 6px 10px;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-sticker .entity_block .avatar {
+    border: 5px solid #fff !important;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-sticker .entity_block:hover {
+    transform: scale(1.04);
+    background: transparent;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-sticker .entity_block.selected {
+    transform: scale(1.06);
+    background: transparent;
+    box-shadow: none;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-sticker .entity_block.selected .avatar {
+    box-shadow: 0 0 0 3px var(--sc-accent), 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-sticker .entity_block.selected::after {
+    display: none;
+}
+
+/* ---- POLAROID: white frame, square photo, tilt ----------- */
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block {
+    padding: 8px 8px 4px;
+    gap: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block .avatar {
+    width: 100% !important;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .character_select_container {
+    padding-bottom: 6px;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .ch_name {
+    font-family: 'Gaegu', 'Noto Sans KR', cursive;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block:nth-child(3n+1) {
+    transform: rotate(-2deg);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block:nth-child(3n+2) {
+    transform: rotate(1.5deg);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block:nth-child(3n) {
+    transform: rotate(-1deg);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block.selected {
+    transform: rotate(0deg) scale(1.04);
+    z-index: 2;
+}
+
+/* ---- MAGAZINE: photo fills card, text overlaid at bottom -- */
+/* Avatar is IN FLOW and carries the aspect-ratio so the container
+   height is content-driven — putting aspect-ratio on the grid item
+   itself collapses 1fr columns, so we avoid that. */
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .entity_block {
+    padding: 0;
+    height: auto;
+    overflow: hidden;
+    justify-content: flex-start;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .entity_block .avatar {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4;
+    border-radius: 0 !important;
+    margin: 0;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .entity_block .avatar img {
+    border-radius: 0 !important;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .character_select_container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 24px 10px 9px;
+    box-sizing: border-box;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 85%);
+    text-align: left !important;
+    align-items: flex-start !important;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .character_name_block {
+    align-items: flex-start !important;
+    text-align: left !important;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .ch_name,
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .ch_additional_info {
+    color: #ffffff !important;
+    text-align: left !important;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-magazine .ch_additional_info {
+    opacity: 0.9;
+}
+
+/* ---- TRADING CARD: gradient frame + banner --------------- */
+/* Height is content-driven (square avatar + banner). No container
+   aspect-ratio, which would collapse the 1fr columns. */
+#rm_print_characters_block.sc-enabled.sc-theme-tcg .entity_block {
+    height: auto;
+    padding: 6px;
+    gap: 5px;
+    justify-content: flex-start;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-tcg .entity_block .avatar {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+    border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
+    box-sizing: border-box;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-tcg .character_select_container {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 6px;
+    padding: 4px 6px;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-tcg .ch_name,
+#rm_print_characters_block.sc-enabled.sc-theme-tcg .ch_additional_info {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+/* ---- GLASS: frosted translucent cards -------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-glass .entity_block {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+/* Diagonal glossy highlight — independent of card color, so Glass
+   stays visually distinct from Paper even when a custom card color
+   is applied. */
+#rm_print_characters_block.sc-enabled.sc-theme-glass .entity_block::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.02) 55%);
+    pointer-events: none;
+    z-index: 0;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-glass .entity_block > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   CHARACTER-SPECIFIC OVERRIDES
+   Clean "photo + name only" look; handle folders & groups.
+   ============================================================ */
+
+/* Name-only: hide everything except avatar + name. */
+#rm_print_characters_block.sc-enabled .ch_additional_info,
+#rm_print_characters_block.sc-enabled .ch_description,
+#rm_print_characters_block.sc-enabled .tags,
+#rm_print_characters_block.sc-enabled .character_name_block_sub_line,
+#rm_print_characters_block.sc-enabled .bogus_folder_hidden_counter,
+#rm_print_characters_block.sc-enabled .ch_assistant,
+#rm_print_characters_block.sc-enabled .ch_fav_icon,
+#rm_print_characters_block.sc-enabled .group_fav_icon {
+    display: none !important;
+}
+
+/* Groups use .group_select_container — center it like characters. */
+#rm_print_characters_block.sc-enabled .entity_block .group_select_container {
+    width: 100%;
+    text-align: center !important;
+    align-items: center !important;
+    justify-content: center;
+    flex-direction: column;
+}
+#rm_print_characters_block.sc-enabled .group_name_block {
+    width: 100%;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column;
+    text-align: center !important;
+}
+
+/* Folders: the avatar is an icon, not a photo — center & tint it. */
+#rm_print_characters_block.sc-enabled .bogus_folder_select .avatar {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: color-mix(in srgb, var(--sc-accent) 14%, transparent);
+}
+#rm_print_characters_block.sc-enabled .bogus_folder_select .avatar .bogus_folder_icon {
+    font-size: 2.6em;
+    opacity: 0.85;
+    color: var(--sc-text);
+}
+/* "Go back" folder row: keep it compact and centered. */
+#rm_print_characters_block.sc-enabled .bogus_folder_select_back .bogus_folder_back_placeholder {
+    display: none !important;
+}
