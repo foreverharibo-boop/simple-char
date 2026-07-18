@@ -194,24 +194,21 @@
    specificity !important. Size scales with the card but caps out,
    so 4 columns still look generous. */
 #rm_print_characters_block.sc-enabled .entity_block .avatar {
-    position: relative;
+    display: block !important;
     width: 92% !important;
-    height: 0 !important;
-    padding-bottom: 92% !important;   /* square: % is of card width */
-    box-sizing: content-box !important;
-    aspect-ratio: auto !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
     border-radius: var(--sc-avatar-corner) !important;
     overflow: hidden;
     align-self: center;
     margin: 0 auto;
     outline: none;
     flex: none !important;
-    display: block !important;
 }
 
 #rm_print_characters_block.sc-enabled .entity_block .avatar img {
-    position: absolute !important;
-    inset: 0 !important;
+    display: block !important;
+    position: static !important;
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
@@ -331,8 +328,6 @@
 }
 #rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block .avatar {
     width: 100% !important;
-    padding-bottom: 100% !important;
-    box-sizing: content-box !important;
 }
 #rm_print_characters_block.sc-enabled.sc-theme-polaroid .character_select_container {
     padding-bottom: 6px;
@@ -365,12 +360,10 @@
     justify-content: flex-start;
 }
 #rm_print_characters_block.sc-enabled.sc-theme-magazine .entity_block .avatar {
-    position: relative;
+    display: block !important;
     width: 100% !important;
-    height: 0 !important;
-    padding-bottom: 133% !important;   /* 3:4 tall */
-    box-sizing: content-box !important;
-    aspect-ratio: auto !important;
+    height: auto !important;
+    aspect-ratio: 3 / 4;
     border-radius: 0 !important;
     margin: 0;
 }
@@ -414,13 +407,12 @@
     justify-content: flex-start;
 }
 #rm_print_characters_block.sc-enabled.sc-theme-tcg .entity_block .avatar {
-    position: relative;
+    display: block !important;
     width: 100% !important;
-    height: 0 !important;
-    padding-bottom: 100% !important;
-    aspect-ratio: auto !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
     border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
-    box-sizing: content-box !important;
+    box-sizing: border-box;
 }
 #rm_print_characters_block.sc-enabled.sc-theme-tcg .character_select_container {
     width: 100%;
