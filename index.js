@@ -52,21 +52,38 @@ function applyTheme() {
 }
 
 /**
- * Set each avatar's height in px from its rendered width.
- * CSS aspect-ratio / padding-% don't grow the grid row when the
- * avatar width is a percentage (treated as 0 during intrinsic row
- * sizing), so the card clips the photo. An explicit px height fixes it.
+ * The card has overflow:hidden, which makes the browser treat its
+ * min-content height as ~0 — so the grid row never grows to fit the
+ * avatar and the photo gets clipped. Percentage widths also drop out
+ * of intrinsic row sizing. We fix both in JS: set each avatar's height
+ * in px from its rendered width, then pin each card's height to its
+ * real content height (scrollHeight), which ignores the clip.
  */
 function sizeAvatars() {
     const block = document.getElementById(BLOCK_ID);
     if (!block || !block.classList.contains('sc-enabled')) return;
     const ratio = getSettings().theme === 'magazine' ? 4 / 3 : 1; // h/w
-    block.querySelectorAll('.entity_block .avatar').forEach((av) => {
+    const cards = Array.from(block.querySelectorAll('.entity_block'));
+    if (!cards.length) return;
+
+    // Pass 1: reset, then set avatar heights from measured width.
+    for (const card of cards) {
+        card.style.removeProperty('height');
+        const av = card.querySelector('.avatar');
+        if (!av) continue;
+        av.style.removeProperty('height');
         const w = av.offsetWidth;
         if (w > 0) {
             av.style.setProperty('height', Math.round(w * ratio) + 'px', 'important');
         }
-    });
+    }
+    // Pass 2: pin card heights to real content height (post-reflow).
+    for (const card of cards) {
+        const target = card.scrollHeight;
+        if (target > 0) {
+            card.style.setProperty('height', target + 'px', 'important');
+        }
+    }
 }
 
 /** Toggle the reskin on/off. */
