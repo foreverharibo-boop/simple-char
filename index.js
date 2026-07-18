@@ -82,16 +82,28 @@ function applyEnabledState() {
 function observeBlock() {
     const block = document.getElementById(BLOCK_ID);
     if (!block) return;
-    const observer = new MutationObserver(() => {
+
+    // Re-apply classes + resize avatars when the list content changes.
+    const mo = new MutationObserver(() => {
         const settings = getSettings();
         block.classList.toggle('sc-enabled', !!settings.enabled);
         if (settings.enabled) applyTheme();
     });
-    observer.observe(block, {
+    mo.observe(block, {
         childList: true,
         attributes: true,
         attributeFilter: ['class'],
     });
+
+    // Fires when the panel actually gains a size (i.e. when it opens),
+    // which is exactly when avatar widths become measurable. This is
+    // the reliable trigger the click/mutation handlers were missing.
+    if (window.ResizeObserver) {
+        const ro = new ResizeObserver(() => {
+            if (getSettings().enabled) sizeAvatars();
+        });
+        ro.observe(block);
+    }
 }
 
 async function addSettingsPanel() {
