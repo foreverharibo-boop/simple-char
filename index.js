@@ -77,11 +77,14 @@ function sizeAvatars() {
             av.style.setProperty('height', Math.round(w * ratio) + 'px', 'important');
         }
     }
-    // Pass 2: pin card heights to real content height (post-reflow).
-    for (const card of cards) {
-        const target = card.scrollHeight;
-        if (target > 0) {
-            card.style.setProperty('height', target + 'px', 'important');
+    // Pass 2: magazine keeps overflow:hidden (photo bg + overlaid
+    // caption), so it needs an explicit height. Other themes use
+    // overflow:visible and grow to fit avatar + name on their own.
+    if (getSettings().theme === 'magazine') {
+        for (const card of cards) {
+            const av = card.querySelector('.avatar');
+            const h = av ? av.offsetHeight : 0;
+            if (h > 0) card.style.setProperty('height', h + 'px', 'important');
         }
     }
 }

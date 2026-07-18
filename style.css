@@ -149,6 +149,7 @@
     height: auto !important;
     justify-content: flex-start;
     box-sizing: border-box;
+    overflow: visible !important;
     border-radius: var(--sc-radius);
     background: var(--sc-card-bg);
     border: var(--sc-border-width) solid var(--sc-border);
@@ -356,7 +357,7 @@
 #rm_print_characters_block.sc-enabled.sc-theme-magazine .entity_block {
     padding: 0;
     height: auto !important;
-    overflow: hidden;
+    overflow: hidden !important;
     justify-content: flex-start;
 }
 #rm_print_characters_block.sc-enabled.sc-theme-magazine .entity_block .avatar {
