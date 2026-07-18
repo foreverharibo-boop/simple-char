@@ -198,6 +198,7 @@
     width: 92% !important;
     height: 0 !important;
     padding-bottom: 92% !important;   /* square: % is of card width */
+    box-sizing: content-box !important;
     aspect-ratio: auto !important;
     border-radius: var(--sc-avatar-corner) !important;
     overflow: hidden;
@@ -331,6 +332,7 @@
 #rm_print_characters_block.sc-enabled.sc-theme-polaroid .entity_block .avatar {
     width: 100% !important;
     padding-bottom: 100% !important;
+    box-sizing: content-box !important;
 }
 #rm_print_characters_block.sc-enabled.sc-theme-polaroid .character_select_container {
     padding-bottom: 6px;
@@ -367,6 +369,7 @@
     width: 100% !important;
     height: 0 !important;
     padding-bottom: 133% !important;   /* 3:4 tall */
+    box-sizing: content-box !important;
     aspect-ratio: auto !important;
     border-radius: 0 !important;
     margin: 0;
@@ -417,7 +420,7 @@
     padding-bottom: 100% !important;
     aspect-ratio: auto !important;
     border: 1.5px solid rgba(255, 255, 255, 0.45) !important;
-    box-sizing: border-box;
+    box-sizing: content-box !important;
 }
 #rm_print_characters_block.sc-enabled.sc-theme-tcg .character_select_container {
     width: 100%;
