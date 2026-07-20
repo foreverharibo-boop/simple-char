@@ -190,6 +190,7 @@
     width: 100%;
     box-sizing: border-box;
     align-content: start;
+    align-items: start;
     justify-content: stretch;
     justify-items: stretch;
 }
