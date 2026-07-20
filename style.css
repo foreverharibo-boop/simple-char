@@ -180,6 +180,38 @@
     --sc-text: #3d8fd6;
 }
 
+/* ---- Bare White ⬜ (no borders/shadows) ------------------ */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white {
+    --sc-radius: 12px;
+    --sc-avatar-corner: 14px;
+    --sc-accent: #111111;
+    --sc-card-bg: transparent;
+    --sc-card-bg-hover: transparent;
+    --sc-card-bg-active: transparent;
+    --sc-border: transparent;
+    --sc-border-hover: transparent;
+    --sc-border-width: 0;
+    --sc-glow: none;
+    --sc-name-weight: 400;
+    --sc-text: #222222;
+}
+
+/* ---- Bare Black ⬛ (no borders/shadows) ------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black {
+    --sc-radius: 12px;
+    --sc-avatar-corner: 14px;
+    --sc-accent: #ffffff;
+    --sc-card-bg: transparent;
+    --sc-card-bg-hover: transparent;
+    --sc-card-bg-active: transparent;
+    --sc-border: transparent;
+    --sc-border-hover: transparent;
+    --sc-border-width: 0;
+    --sc-glow: none;
+    --sc-name-weight: 400;
+    --sc-text: #eeeeee;
+}
+
 /* ---- The grid container ---------------------------------- */
 #rm_print_characters_block.sc-enabled {
     display: grid !important;
@@ -697,4 +729,75 @@
     font-size: 14px;
     top: 2px;
     right: 4px;
+}
+
+/* ============================================================
+   BARE MINIMAL — White / Black (photo + name only)
+   No card background, border, or shadow. Selection = the
+   unselected cards dim slightly and the active name goes bold.
+   ============================================================ */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 14px 10px;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black {
+    background: #121212;
+    border-radius: 12px;
+    padding: 14px 10px;
+}
+
+/* strip all card chrome */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: opacity 0.16s ease;
+}
+/* no dimming — all cards full opacity; selection = ring + bold name */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block {
+    opacity: 1;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block:hover,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block:hover,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block.selected,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block.selected {
+    opacity: 1;
+    transform: none;
+}
+/* remove ST's default photo border/shadow entirely */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block .avatar,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block .avatar,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block .avatar img,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block .avatar img {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+/* selected persona: accent ring on the photo only */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block.selected .avatar,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block.selected .avatar {
+    box-shadow: 0 0 0 2.5px var(--sc-accent) !important;
+}
+/* active name goes bold */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block.selected .ch_name,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block.selected .ch_name {
+    font-weight: 700;
+}
+/* no selected dot */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .entity_block.selected::after,
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .entity_block.selected::after {
+    display: none;
+}
+
+/* Bare Black: brighter title so it stays readable on dark bg */
+#rm_print_characters_block.sc-enabled.sc-theme-bare-black .ch_additional_info {
+    color: #b8b8b8 !important;
+    opacity: 1 !important;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bare-white .ch_additional_info {
+    color: #999999 !important;
+    opacity: 1 !important;
 }
