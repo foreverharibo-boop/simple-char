@@ -118,6 +118,68 @@
     --sc-text: #4a4038;
 }
 
+/* ---- Cute: Bubble Pink 🫧💕 ------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink {
+    --sc-radius: 18px;
+    --sc-avatar-corner: 50%;
+    --sc-accent: #ff8fc4;
+    --sc-card-bg: transparent;
+    --sc-card-bg-hover: rgba(255, 255, 255, 0.35);
+    --sc-card-bg-active: transparent;
+    --sc-border: transparent;
+    --sc-border-hover: transparent;
+    --sc-glow: none;
+    --sc-name-weight: 700;
+    --sc-text: #e0559a;
+}
+
+/* ---- Cute: Bubble Sky 🫧💙 -------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky {
+    --sc-radius: 18px;
+    --sc-avatar-corner: 50%;
+    --sc-accent: #7cc0ff;
+    --sc-card-bg: transparent;
+    --sc-card-bg-hover: rgba(255, 255, 255, 0.35);
+    --sc-card-bg-active: transparent;
+    --sc-border: transparent;
+    --sc-border-hover: transparent;
+    --sc-glow: none;
+    --sc-name-weight: 700;
+    --sc-text: #3d8fd6;
+}
+
+/* ---- Cute: Heart Pink 💕 ---------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-heart-pink {
+    --sc-radius: 18px;
+    --sc-avatar-corner: 16px;
+    --sc-accent: #ff8fc4;
+    --sc-card-bg: #fffafd;
+    --sc-card-bg-hover: #fff0f7;
+    --sc-card-bg-active: color-mix(in srgb, #ff8fc4 22%, #fff);
+    --sc-border: #ffe0f0;
+    --sc-border-hover: #ff8fc4;
+    --sc-border-width: 2px;
+    --sc-glow: 0 4px 14px color-mix(in srgb, #ff9ecf 55%, transparent);
+    --sc-name-weight: 700;
+    --sc-text: #e0559a;
+}
+
+/* ---- Cute: Heart Sky 💙 ----------------------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-heart-sky {
+    --sc-radius: 18px;
+    --sc-avatar-corner: 16px;
+    --sc-accent: #7cc0ff;
+    --sc-card-bg: #fafdff;
+    --sc-card-bg-hover: #eef7ff;
+    --sc-card-bg-active: color-mix(in srgb, #7cc0ff 22%, #fff);
+    --sc-border: #e0f0ff;
+    --sc-border-hover: #8fc4ff;
+    --sc-border-width: 2px;
+    --sc-glow: 0 4px 14px color-mix(in srgb, #9ecfff 55%, transparent);
+    --sc-name-weight: 700;
+    --sc-text: #3d8fd6;
+}
+
 /* ---- The grid container ---------------------------------- */
 #rm_print_characters_block.sc-enabled {
     display: grid !important;
@@ -505,4 +567,133 @@
 /* "Go back" folder row: keep it compact and centered. */
 #rm_print_characters_block.sc-enabled .bogus_folder_select_back .bogus_folder_back_placeholder {
     display: none !important;
+}
+
+/* ============================================================
+   CUTE THEMES — Bubble & Heart (pink / sky)
+   ============================================================ */
+
+/* Panel pastel backgrounds + scattered emoji tile */
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink {
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAiIGhlaWdodD0iMTEwIiB2aWV3Qm94PSIwIDAgMTEwIDExMCI+PHRleHQgeD0iMTAiIHk9IjI0IiBmb250LXNpemU9IjE1IiBvcGFjaXR5PSIwLjU1IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTAgMjQpIj7wn5KVPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIxNiIgZm9udC1zaXplPSIxMiIgb3BhY2l0eT0iMC40NSIgdHJhbnNmb3JtPSJyb3RhdGUoMTggNjAgMTYpIj7wn6unPC90ZXh0Pjx0ZXh0IHg9Ijg4IiB5PSI0MCIgZm9udC1zaXplPSIxNiIgb3BhY2l0eT0iMC41IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTAgODggNDApIj7wn5KXPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSI1MiIgZm9udC1zaXplPSIxMyIgb3BhY2l0eT0iMC40OCIgdHJhbnNmb3JtPSJyb3RhdGUoMjAgMzAgNTIpIj7inKg8L3RleHQ+PHRleHQgeD0iNzIiIHk9IjY2IiBmb250LXNpemU9IjE0IiBvcGFjaXR5PSIwLjUiIHRyYW5zZm9ybT0icm90YXRlKC0xOCA3MiA2NikiPvCfjoA8L3RleHQ+PHRleHQgeD0iMTQiIHk9IjgyIiBmb250LXNpemU9IjEyIiBvcGFjaXR5PSIwLjQ0IiB0cmFuc2Zvcm09InJvdGF0ZSgxMiAxNCA4MikiPvCfkp48L3RleHQ+PHRleHQgeD0iNDgiIHk9IjkyIiBmb250LXNpemU9IjE1IiBvcGFjaXR5PSIwLjUiIHRyYW5zZm9ybT0icm90YXRlKC04IDQ4IDkyKSI+8J+SlTwvdGV4dD48dGV4dCB4PSI5NSIgeT0iODgiIGZvbnQtc2l6ZT0iMTEiIG9wYWNpdHk9IjAuNCIgdHJhbnNmb3JtPSJyb3RhdGUoMjIgOTUgODgpIj7wn6unPC90ZXh0Pjwvc3ZnPg==") repeat, linear-gradient(160deg, #fff5fa, #ffe6f2);
+    border-radius: 16px;
+    padding: 12px 8px;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky {
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMTAiIGhlaWdodD0iMTEwIiB2aWV3Qm94PSIwIDAgMTEwIDExMCI+PHRleHQgeD0iMTAiIHk9IjI0IiBmb250LXNpemU9IjE1IiBvcGFjaXR5PSIwLjU1IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgMTAgMjQpIj7wn5KZPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIxNiIgZm9udC1zaXplPSIxMiIgb3BhY2l0eT0iMC40NSIgdHJhbnNmb3JtPSJyb3RhdGUoMTggNjAgMTYpIj7wn6unPC90ZXh0Pjx0ZXh0IHg9Ijg4IiB5PSI0MCIgZm9udC1zaXplPSIxNiIgb3BhY2l0eT0iMC41IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTAgODggNDApIj7inKg8L3RleHQ+PHRleHQgeD0iMzAiIHk9IjUyIiBmb250LXNpemU9IjEzIiBvcGFjaXR5PSIwLjQ4IiB0cmFuc2Zvcm09InJvdGF0ZSgyMCAzMCA1MikiPuKtkDwvdGV4dD48dGV4dCB4PSI3MiIgeT0iNjYiIGZvbnQtc2l6ZT0iMTQiIG9wYWNpdHk9IjAuNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE4IDcyIDY2KSI+8J+ptTwvdGV4dD48dGV4dCB4PSIxNCIgeT0iODIiIGZvbnQtc2l6ZT0iMTIiIG9wYWNpdHk9IjAuNDQiIHRyYW5zZm9ybT0icm90YXRlKDEyIDE0IDgyKSI+8J+SpzwvdGV4dD48dGV4dCB4PSI0OCIgeT0iOTIiIGZvbnQtc2l6ZT0iMTUiIG9wYWNpdHk9IjAuNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTggNDggOTIpIj7wn5KZPC90ZXh0Pjx0ZXh0IHg9Ijk1IiB5PSI4OCIgZm9udC1zaXplPSIxMSIgb3BhY2l0eT0iMC40IiB0cmFuc2Zvcm09InJvdGF0ZSgyMiA5NSA4OCkiPvCfq6c8L3RleHQ+PC9zdmc+") repeat, linear-gradient(160deg, #f0f8ff, #e3f1ff);
+    border-radius: 16px;
+    padding: 12px 8px;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-heart-pink {
+    background: linear-gradient(160deg, #fff5fa, #ffe6f2);
+    border-radius: 16px;
+    padding: 12px 8px;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-heart-sky {
+    background: linear-gradient(160deg, #f0f8ff, #e3f1ff);
+    border-radius: 16px;
+    padding: 12px 8px;
+}
+
+/* ---- BUBBLE: glossy 3D bubble avatars -------------------- */
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink .entity_block,
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky .entity_block {
+    box-shadow: none;
+    background: transparent;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink .entity_block:hover,
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky .entity_block:hover {
+    transform: scale(1.05);
+    background: transparent;
+    box-shadow: none;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink .entity_block .avatar,
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky .entity_block .avatar {
+    position: relative;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+/* volume + shine overlay */
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink .entity_block .avatar::after,
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky .entity_block .avatar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset -3px -5px 9px rgba(0, 0, 0, 0.18);
+    background: radial-gradient(circle at 30% 24%, rgba(255,255,255,0.6), transparent 42%);
+}
+/* selected: accent ring + glow + heart pop */
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink .entity_block.selected,
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky .entity_block.selected {
+    background: transparent;
+    box-shadow: none;
+    transform: scale(1.05);
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink .entity_block.selected .avatar,
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky .entity_block.selected .avatar {
+    box-shadow: 0 0 0 3px var(--sc-accent),
+        0 0 16px color-mix(in srgb, var(--sc-accent) 60%, transparent);
+}
+
+/* ---- HEART: pastel card + emoji overlay + white avatar --- */
+#rm_print_characters_block.sc-enabled.sc-theme-heart-pink .entity_block,
+#rm_print_characters_block.sc-enabled.sc-theme-heart-sky .entity_block {
+    position: relative;
+    overflow: hidden;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-heart-pink .entity_block::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PHRleHQgeD0iOCIgeT0iMjAiIGZvbnQtc2l6ZT0iMTQiIG9wYWNpdHk9IjAuNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1IDggMjApIj7wn5KVPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIxNiIgZm9udC1zaXplPSIxMiIgb3BhY2l0eT0iMC40NiIgdHJhbnNmb3JtPSJyb3RhdGUoMTggOTAgMTYpIj7wn6unPC90ZXh0Pjx0ZXh0IHg9Ijk2IiB5PSI1NCIgZm9udC1zaXplPSIxNSIgb3BhY2l0eT0iMC41IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTAgOTYgNTQpIj7wn5KXPC90ZXh0Pjx0ZXh0IHg9IjYiIHk9IjUyIiBmb250LXNpemU9IjExIiBvcGFjaXR5PSIwLjQyIiB0cmFuc2Zvcm09InJvdGF0ZSgyMCA2IDUyKSI+4pyoPC90ZXh0Pjx0ZXh0IHg9IjE0IiB5PSI5NiIgZm9udC1zaXplPSIxMyIgb3BhY2l0eT0iMC40NiIgdHJhbnNmb3JtPSJyb3RhdGUoLTIwIDE0IDk2KSI+8J+OgDwvdGV4dD48dGV4dCB4PSI5MiIgeT0iOTgiIGZvbnQtc2l6ZT0iMTIiIG9wYWNpdHk9IjAuNDQiIHRyYW5zZm9ybT0icm90YXRlKDEyIDkyIDk4KSI+8J+SnjwvdGV4dD48dGV4dCB4PSI1MiIgeT0iMTIiIGZvbnQtc2l6ZT0iMTAiIG9wYWNpdHk9IjAuNCIgdHJhbnNmb3JtPSJyb3RhdGUoOCA1MiAxMikiPvCfkpU8L3RleHQ+PC9zdmc+") repeat;
+    opacity: 0.65;
+    pointer-events: none;
+    z-index: 0;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-heart-sky .entity_block::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTIwIDEyMCI+PHRleHQgeD0iOCIgeT0iMjAiIGZvbnQtc2l6ZT0iMTQiIG9wYWNpdHk9IjAuNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1IDggMjApIj7wn5KZPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIxNiIgZm9udC1zaXplPSIxMiIgb3BhY2l0eT0iMC40NiIgdHJhbnNmb3JtPSJyb3RhdGUoMTggOTAgMTYpIj7wn6unPC90ZXh0Pjx0ZXh0IHg9Ijk2IiB5PSI1NCIgZm9udC1zaXplPSIxNSIgb3BhY2l0eT0iMC41IiB0cmFuc2Zvcm09InJvdGF0ZSgtMTAgOTYgNTQpIj7inKg8L3RleHQ+PHRleHQgeD0iNiIgeT0iNTIiIGZvbnQtc2l6ZT0iMTEiIG9wYWNpdHk9IjAuNDIiIHRyYW5zZm9ybT0icm90YXRlKDIwIDYgNTIpIj7irZA8L3RleHQ+PHRleHQgeD0iMTQiIHk9Ijk2IiBmb250LXNpemU9IjEzIiBvcGFjaXR5PSIwLjQ2IiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAgMTQgOTYpIj7wn6m1PC90ZXh0Pjx0ZXh0IHg9IjkyIiB5PSI5OCIgZm9udC1zaXplPSIxMiIgb3BhY2l0eT0iMC40NCIgdHJhbnNmb3JtPSJyb3RhdGUoMTIgOTIgOTgpIj7wn5KnPC90ZXh0Pjx0ZXh0IHg9IjUyIiB5PSIxMiIgZm9udC1zaXplPSIxMCIgb3BhY2l0eT0iMC40IiB0cmFuc2Zvcm09InJvdGF0ZSg4IDUyIDEyKSI+8J+SmTwvdGV4dD48L3N2Zz4=") repeat;
+    opacity: 0.65;
+    pointer-events: none;
+    z-index: 0;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-heart-pink .entity_block > *,
+#rm_print_characters_block.sc-enabled.sc-theme-heart-sky .entity_block > * {
+    position: relative;
+    z-index: 1;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-heart-pink .entity_block .avatar,
+#rm_print_characters_block.sc-enabled.sc-theme-heart-sky .entity_block .avatar {
+    border: 3px solid #fff !important;
+    box-sizing: border-box;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Cute heart dot -> emoji, for all cute themes */
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-pink .entity_block.selected::after,
+#rm_print_characters_block.sc-enabled.sc-theme-heart-pink .entity_block.selected::after {
+    content: "💗";
+    background: none;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    top: 2px;
+    right: 4px;
+}
+#rm_print_characters_block.sc-enabled.sc-theme-bubble-sky .entity_block.selected::after,
+#rm_print_characters_block.sc-enabled.sc-theme-heart-sky .entity_block.selected::after {
+    content: "💙";
+    background: none;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    top: 2px;
+    right: 4px;
 }

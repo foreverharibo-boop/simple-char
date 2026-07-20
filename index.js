@@ -2,7 +2,7 @@ import { extension_settings } from '../../../extensions.js';
 import { saveSettingsDebounced } from '../../../../script.js';
 
 const MODULE = 'simpleCharacter';
-const THEMES = ['soft', 'paper', 'polaroid', 'circle', 'magazine', 'sticker', 'tcg', 'glass'];
+const THEMES = ['soft', 'paper', 'polaroid', 'circle', 'magazine', 'sticker', 'tcg', 'glass', 'bubble-pink', 'bubble-sky', 'heart-pink', 'heart-sky'];
 const BLOCK_ID = 'rm_print_characters_block';
 
 const defaultSettings = {
@@ -153,6 +153,10 @@ async function addSettingsPanel() {
                         <option value="sticker">Sticker</option>
                         <option value="tcg">Trading Card</option>
                         <option value="glass">Glass</option>
+                        <option value="bubble-pink">Bubble Pink 🫧💕</option>
+                        <option value="bubble-sky">Bubble Sky 🫧💙</option>
+                        <option value="heart-pink">Heart Pink 💕</option>
+                        <option value="heart-sky">Heart Sky 💙</option>
                     </select>
                 </div>
 
