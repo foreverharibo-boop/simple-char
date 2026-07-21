@@ -21,6 +21,8 @@
         inset 0 0 20px color-mix(in srgb, var(--sc-accent) 10%, transparent);
     --sc-name-weight: 600;
     --sc-text: var(--SmartThemeBodyColor);
+    --sc-card-min: 105px;
+    --sc-avatar-scale: 100%;
 }
 
 /* ---- Circle preset (round avatars, soft card) ------------ */
@@ -215,7 +217,7 @@
 /* ---- The grid container ---------------------------------- */
 #rm_print_characters_block.sc-enabled {
     display: grid !important;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--sc-card-min, 105px), 100%), 1fr));
     grid-auto-rows: auto;
     gap: var(--sc-gap);
     padding: 4px 2px;
@@ -291,7 +293,7 @@
    so 4 columns still look generous. */
 #rm_print_characters_block.sc-enabled .entity_block .avatar {
     display: block !important;
-    width: 92% !important;
+    width: var(--sc-avatar-scale, 100%) !important;
     height: auto !important;
     aspect-ratio: 1 / 1;
     border-radius: var(--sc-avatar-corner) !important;
@@ -378,9 +380,9 @@
 #rm_print_characters_block.sc-enabled.sc-theme-magazine,
 #rm_print_characters_block.sc-enabled.sc-theme-polaroid,
 #rm_print_characters_block.sc-enabled.sc-theme-tcg {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     grid-auto-rows: auto;
 }
+/* (tall themes share the auto-fill column count from the base grid) */
 
 /* ---- CIRCLE: ring around the avatar when selected --------- */
 #rm_print_characters_block.sc-enabled.sc-theme-circle .entity_block.selected .avatar {

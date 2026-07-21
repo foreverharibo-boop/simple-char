@@ -12,6 +12,8 @@ const defaultSettings = {
     accentColor: '#c8a0e6',
     useCustomCardColor: false,
     cardColor: '#8a8aa0',
+    cardMin: 105,
+    avatarScale: 100,
 };
 
 function getSettings() {
@@ -48,6 +50,8 @@ function applyTheme() {
         block.style.removeProperty('--sc-card-bg');
         block.style.removeProperty('--sc-card-bg-hover');
     }
+    block.style.setProperty('--sc-card-min', (settings.cardMin || 105) + 'px');
+    block.style.setProperty('--sc-avatar-scale', (settings.avatarScale || 100) + '%');
     sizeAvatars();
 }
 
@@ -180,6 +184,12 @@ async function addSettingsPanel() {
                     <small class="text_muted">All unselected cards</small>
                 </div>
 
+                <hr style="margin:10px 0; opacity:0.2;">
+                <div class="flex-container flexFlowColumn" style="margin-top:4px;">
+                    <label for="sc-card-min"><small>Size (small ↔ large)</small></label>
+                    <input id="sc-card-min" type="range" min="30" max="200" step="5" class="text_pole" style="width:100%;">
+                </div>
+
                 <small class="text_muted" style="display:block;margin-top:8px;">
                     Restyles the native character list into a card grid.
                     All original features keep working.
@@ -233,6 +243,14 @@ async function addSettingsPanel() {
     });
     $card.on('input', function () {
         settings.cardColor = $(this).val();
+        saveSettingsDebounced();
+        applyTheme();
+    });
+
+    const $cardMin = $('#sc-card-min');
+    $cardMin.val(settings.cardMin);
+    $cardMin.on('input', function () {
+        settings.cardMin = parseInt($(this).val(), 10);
         saveSettingsDebounced();
         applyTheme();
     });
