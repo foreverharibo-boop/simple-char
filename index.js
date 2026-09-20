@@ -28,67 +28,108 @@ function getSettings() {
     return extension_settings[MODULE];
 }
 
+/** Write a CSS var / class only when it actually changes (avoids needless style recalcs on every card). */
+function setVar(el, name, val) {
+    if (el.style.getPropertyValue(name) !== val) el.style.setProperty(name, val);
+}
+function clearVar(el, name) {
+    if (el.style.getPropertyValue(name)) el.style.removeProperty(name);
+}
+function setClass(el, cls, on) {
+    if (el.classList.contains(cls) !== on) el.classList.toggle(cls, on);
+}
+
 /** Apply theme preset + custom colors to the character block. */
 function applyTheme() {
     const settings = getSettings();
     const block = document.getElementById(BLOCK_ID);
     if (!block) return;
     for (const t of THEMES) {
-        block.classList.toggle('sc-theme-' + t, settings.theme === t);
+        setClass(block, 'sc-theme-' + t, settings.theme === t);
     }
     if (settings.useCustomAccent && settings.accentColor) {
-        block.style.setProperty('--sc-accent', settings.accentColor);
+        setVar(block, '--sc-accent', settings.accentColor);
     } else {
-        block.style.removeProperty('--sc-accent');
+        clearVar(block, '--sc-accent');
     }
     if (settings.useCustomCardColor && settings.cardColor) {
-        block.style.setProperty('--sc-card-bg',
+        setVar(block, '--sc-card-bg',
             `color-mix(in srgb, ${settings.cardColor} 20%, transparent)`);
-        block.style.setProperty('--sc-card-bg-hover',
+        setVar(block, '--sc-card-bg-hover',
             `color-mix(in srgb, ${settings.cardColor} 32%, transparent)`);
     } else {
-        block.style.removeProperty('--sc-card-bg');
-        block.style.removeProperty('--sc-card-bg-hover');
+        clearVar(block, '--sc-card-bg');
+        clearVar(block, '--sc-card-bg-hover');
     }
-    block.style.setProperty('--sc-card-min', (settings.cardMin || 105) + 'px');
-    block.style.setProperty('--sc-avatar-scale', (settings.avatarScale || 100) + '%');
-    sizeAvatars();
+    setVar(block, '--sc-card-min', (settings.cardMin || 105) + 'px');
+    setVar(block, '--sc-avatar-scale', (settings.avatarScale || 100) + '%');
+    scheduleSize();
 }
 
 /**
- * The card has overflow:hidden, which makes the browser treat its
- * min-content height as ~0 — so the grid row never grows to fit the
- * avatar and the photo gets clipped. Percentage widths also drop out
- * of intrinsic row sizing. We fix both in JS: set each avatar's height
- * in px from its rendered width, then pin each card's height to its
- * real content height (scrollHeight), which ignores the clip.
+ * Coalesce all "please re-measure" requests into ONE run per frame.
+ * (Previously every mutation / resize / click ran a full pass, and each
+ * pass forced a layout per card.)
+ */
+let sizeRaf = 0;
+function scheduleSize() {
+    if (sizeRaf) return;
+    sizeRaf = requestAnimationFrame(() => {
+        sizeRaf = 0;
+        if (getSettings().enabled) sizeAvatars();
+    });
+}
+
+/**
+ * Pin avatar heights (px) from their rendered width; magazine also pins
+ * the card height (overflow:hidden card).
+ *
+ * Done as a batched READ phase followed by a WRITE phase so the browser
+ * lays out once, not once per card, and values that didn't change are
+ * not rewritten.
  */
 function sizeAvatars() {
     const block = document.getElementById(BLOCK_ID);
     if (!block || !block.classList.contains('sc-enabled')) return;
-    const ratio = getSettings().theme === 'magazine' ? 4 / 3 : 1; // h/w
-    const cards = Array.from(block.querySelectorAll('.entity_block'));
-    if (!cards.length) return;
+    const magazine = getSettings().theme === 'magazine';
+    const ratio = magazine ? 4 / 3 : 1; // h/w
+    const cards = block.querySelectorAll('.entity_block');
+    const n = cards.length;
+    if (!n) return;
 
-    // Pass 1: reset, then set avatar heights from measured width.
-    for (const card of cards) {
-        card.style.removeProperty('height');
-        const av = card.querySelector('.avatar');
-        if (!av) continue;
-        av.style.removeProperty('height');
-        const w = av.offsetWidth;
-        if (w > 0) {
-            av.style.setProperty('height', Math.round(w * ratio) + 'px', 'important');
-        }
+    // READ: no writes in this loop -> a single layout flush.
+    const avs = new Array(n);
+    const widths = new Array(n);
+    for (let i = 0; i < n; i++) {
+        const av = cards[i].querySelector('.avatar');
+        avs[i] = av;
+        widths[i] = av ? av.offsetWidth : 0;
     }
-    // Pass 2: magazine keeps overflow:hidden (photo bg + overlaid
-    // caption), so it needs an explicit height. Other themes use
-    // overflow:visible and grow to fit avatar + name on their own.
-    if (getSettings().theme === 'magazine') {
-        for (const card of cards) {
-            const av = card.querySelector('.avatar');
-            const h = av ? av.offsetHeight : 0;
-            if (h > 0) card.style.setProperty('height', h + 'px', 'important');
+
+    // WRITE: only touch styles whose value actually changes.
+    for (let i = 0; i < n; i++) {
+        const card = cards[i];
+        const av = avs[i];
+        const w = widths[i];
+        const h = w > 0 ? Math.round(w * ratio) + 'px' : '';
+
+        if (av) {
+            if (h) {
+                if (av.style.getPropertyValue('height') !== h) {
+                    av.style.setProperty('height', h, 'important');
+                }
+            } else if (av.style.getPropertyValue('height')) {
+                av.style.removeProperty('height');
+            }
+        }
+
+        // Only magazine needs an explicit card height.
+        if (magazine && h) {
+            if (card.style.getPropertyValue('height') !== h) {
+                card.style.setProperty('height', h, 'important');
+            }
+        } else if (card.style.getPropertyValue('height')) {
+            card.style.removeProperty('height');
         }
     }
 }
@@ -98,8 +139,15 @@ function applyEnabledState() {
     const settings = getSettings();
     const block = document.getElementById(BLOCK_ID);
     if (!block) return;
-    block.classList.toggle('sc-enabled', !!settings.enabled);
-    if (settings.enabled) applyTheme();
+    setClass(block, 'sc-enabled', !!settings.enabled);
+    if (settings.enabled) {
+        applyTheme();
+    } else {
+        // Reskin is off: drop the pixel heights we pinned so the native list isn't clipped.
+        for (const el of block.querySelectorAll('.entity_block, .entity_block .avatar')) {
+            if (el.style.getPropertyValue('height')) el.style.removeProperty('height');
+        }
+    }
 }
 
 /** The list re-renders on search / folder nav; keep classes applied. */
@@ -107,11 +155,15 @@ function observeBlock() {
     const block = document.getElementById(BLOCK_ID);
     if (!block) return;
 
-    // Re-apply classes + resize avatars when the list content changes.
+    // List content (or our classes) changed. Only re-apply if something is
+    // actually missing, then queue ONE coalesced re-measure.
     const mo = new MutationObserver(() => {
         const settings = getSettings();
-        block.classList.toggle('sc-enabled', !!settings.enabled);
-        if (settings.enabled) applyTheme();
+        setClass(block, 'sc-enabled', !!settings.enabled);
+        if (settings.enabled) {
+            for (const t of THEMES) setClass(block, 'sc-theme-' + t, settings.theme === t);
+            scheduleSize();
+        }
     });
     mo.observe(block, {
         childList: true,
@@ -119,12 +171,16 @@ function observeBlock() {
         attributeFilter: ['class'],
     });
 
-    // Fires when the panel actually gains a size (i.e. when it opens),
-    // which is exactly when avatar widths become measurable. This is
-    // the reliable trigger the click/mutation handlers were missing.
+    // Fires when the panel gains a size (i.e. when it opens) or its WIDTH
+    // changes. Height changes are ignored on purpose: sizeAvatars itself
+    // changes the block's height, which used to re-trigger this observer.
     if (window.ResizeObserver) {
-        const ro = new ResizeObserver(() => {
-            if (getSettings().enabled) sizeAvatars();
+        let lastWidth = -1;
+        const ro = new ResizeObserver((entries) => {
+            const w = Math.round(entries[entries.length - 1].contentRect.width);
+            if (w === lastWidth) return;
+            lastWidth = w;
+            if (getSettings().enabled) scheduleSize();
         });
         ro.observe(block);
     }
@@ -268,13 +324,6 @@ export async function init() {
     // Re-apply when the character list panel is opened.
     $(document).on('click', '#rightNavDrawerIcon, #rm_button_characters', () => {
         setTimeout(applyEnabledState, 60);
-    });
-
-    // Avatar heights are pixel-based, so recompute on resize.
-    let resizeTimer = null;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(sizeAvatars, 120);
     });
 }
 
