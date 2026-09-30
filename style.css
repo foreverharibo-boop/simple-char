@@ -575,7 +575,8 @@
 /* ---- CRYSTAL GLASS LIGHT: transparent cards, fixed highlights */
 #rm_print_characters_block.sc-enabled.sc-theme-crystal-glass-light .entity_block {
     position: relative;
-    overflow: hidden !important;
+    overflow: visible !important;
+    isolation: isolate;
     backdrop-filter: blur(4px) saturate(120%);
     -webkit-backdrop-filter: blur(4px) saturate(120%);
     box-shadow: 0 14px 28px rgba(49, 52, 62, 0.2),
@@ -591,6 +592,7 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
+    clip-path: inset(0 round var(--sc-radius));
     background:
         radial-gradient(110% 72% at 14% -9%, rgba(255, 255, 255, 0.68) 0%, rgba(255, 255, 255, 0.25) 28%, transparent 56%),
         radial-gradient(90% 46% at 108% 106%, rgba(255, 255, 255, 0.25) 0%, transparent 58%),

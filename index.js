@@ -81,8 +81,11 @@ function scheduleSize() {
 }
 
 /**
- * Pin avatar heights (px) from their rendered width; magazine also pins
- * the card height (overflow:hidden card).
+ * Pin avatar heights (px) from their rendered width. Magazine and Crystal
+ * Glass Light also pin the card height. The latter is intentional: some
+ * SillyTavern grid/list CSS combinations report only the label's intrinsic
+ * height to the outer grid, which lets the square avatar overflow into the
+ * following row.
  *
  * Done as a batched READ phase followed by a WRITE phase so the browser
  * lays out once, not once per card, and values that didn't change are
@@ -92,6 +95,7 @@ function sizeAvatars() {
     const block = document.getElementById(BLOCK_ID);
     if (!block || !block.classList.contains('sc-enabled')) return;
     const magazine = getSettings().theme === 'magazine';
+    const crystalGlass = getSettings().theme === 'crystal-glass-light';
     const ratio = magazine ? 4 / 3 : 1; // h/w
     const cards = block.querySelectorAll('.entity_block');
     const n = cards.length;
@@ -100,10 +104,13 @@ function sizeAvatars() {
     // READ: no writes in this loop -> a single layout flush.
     const avs = new Array(n);
     const widths = new Array(n);
+    const labelHeights = new Array(n);
     for (let i = 0; i < n; i++) {
         const av = cards[i].querySelector('.avatar');
         avs[i] = av;
         widths[i] = av ? av.offsetWidth : 0;
+        const label = cards[i].querySelector('.character_select_container');
+        labelHeights[i] = label ? label.offsetHeight : 0;
     }
 
     // WRITE: only touch styles whose value actually changes.
@@ -123,10 +130,18 @@ function sizeAvatars() {
             }
         }
 
-        // Only magazine needs an explicit card height.
+        // Magazine is image-only with an overlay, so its card equals the
+        // portrait height. Crystal Glass has in-flow labels below the image;
+        // padding (26px) + gap (8px) = 34px around those two regions.
         if (magazine && h) {
             if (card.style.getPropertyValue('height') !== h) {
                 card.style.setProperty('height', h, 'important');
+            }
+        } else if (crystalGlass && w > 0) {
+            const labelHeight = Math.max(labelHeights[i], 20);
+            const cardHeight = Math.ceil(w + labelHeight + 34) + 'px';
+            if (card.style.getPropertyValue('height') !== cardHeight) {
+                card.style.setProperty('height', cardHeight, 'important');
             }
         } else if (card.style.getPropertyValue('height')) {
             card.style.removeProperty('height');
